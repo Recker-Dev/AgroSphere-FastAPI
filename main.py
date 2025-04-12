@@ -26,6 +26,10 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
+@app.get("/")
+def root():
+    return "Online"
+
 
 @app.post("/predictCrop")
 def predict(data: SoilInput):
