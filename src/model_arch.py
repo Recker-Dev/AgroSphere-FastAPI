@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 from ultralytics import YOLO
 load_dotenv()
 
+from src.credentials import creds
 
 
 
@@ -85,7 +86,7 @@ def load_soil_type_detection_model():
 
 def load_gemini():
     return ChatGoogleGenerativeAI(api_key=os.getenv("GOOGLE_API_KEY"),
-                            model="gemini-2.0-flash")
+                            model="gemini-2.0-flash",credentials=creds)
 
 
 def load_csv_executor(llm_gemini):
