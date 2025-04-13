@@ -3,7 +3,7 @@ import os
 import torch
 import torch.nn.functional  as F
 import torchvision.transforms as transforms
-from graph import chat_graph
+from src.graph import chat_graph
 import pandas as pd
 
 import cv2
