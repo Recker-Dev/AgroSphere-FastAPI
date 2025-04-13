@@ -1,1 +1,7 @@
 .env
+test.ipynb
+mango_disease.jpeg
+weedtest.jpg
+src/graph_redundant.py
+.pycache
+src/.pycache
