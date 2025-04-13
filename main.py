@@ -3,6 +3,8 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from io import BytesIO
+from typing import Optional
+import base64
 
 from src.schema import SoilInput
 from src.model_arch import load_crop_recommendation_model, load_soil_type_detection_model, load_gemini,load_csv_executor, load_weed_detector
@@ -70,14 +72,29 @@ async def chat_with_historic_data_model(text: str = Form(...)):
     return StreamingResponse(generate_response(), media_type="text/plain")
         
 
-@app.post("/chatWithLLM")
-async def chat_with_chat_model(thread_id: str = Form(...), query:str = Form(...)):
+@app.post("/chatWithLLM", response_class=StreamingResponse)
+async def chat_with_chat_model(
+    thread_id: str = Form(..., description="Thread ID for chat history"),
+    query: str = Form(..., description="User's query to the LLM"),
+    image: Optional[UploadFile] = File(None, description="Optional image upload")
+):
+
+    config = {'configurable': {'thread_id': thread_id}}
+    base64_image = None
+    
+    if image:
+        image_bytes = await image.read()
+        base64_image = base64.b64encode(image_bytes).decode('utf-8')
 
     async def generate_response():
         try:
-            config = {'configurable': {'thread_id': thread_id}}
-            for chunk in chat_with_llm(config, query):
-                yield chunk
+            if base64_image:
+                for chunk in chat_with_llm(config, query, imageUploaded=True, base64_image=base64_image):
+                    yield chunk
+            else:
+                for chunk in chat_with_llm(config, query):
+                    yield chunk
+
         except Exception as e:
             import traceback
             traceback.print_exc()

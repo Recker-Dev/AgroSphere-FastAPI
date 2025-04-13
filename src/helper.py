@@ -3,7 +3,7 @@ import os
 import torch
 import torch.nn.functional  as F
 import torchvision.transforms as transforms
-from src.graph import chat_graph
+from graph import chat_graph
 import pandas as pd
 
 import cv2
@@ -125,7 +125,8 @@ def query_historic_data_llm(agent_executor,llm_gemini,query):
         "You're an expert assistant that helps answer user queries based on historical agriculture data. "
         "You are given the output from a data-extracting agent. If the agent failed to extract critical info like "
         "state, district, or crop name, let the user know that you cannot answer the query due to missing data. "
-        "Otherwise, respond helpfully and clearly using the agent's extracted information."
+        "Otherwise, respond helpfully and clearly using the agent's extracted information." 
+        "If tool execution failure, clearly ask the user to retry again changing some keywords"
     ))
 
     final_query_to_gemini = [
@@ -138,14 +139,22 @@ def query_historic_data_llm(agent_executor,llm_gemini,query):
 
 
 
-def chat_with_llm(config, query):
+def chat_with_llm(config, query,imageUploaded=False,base64_image=None):
 
-    for event in chat_graph.stream({"query":query}, config, stream_mode="updates"):
-        print("--Node--")
-        node_name = next(iter(event.keys()))
-        print(node_name)
-
+    if imageUploaded == False:
+        for event in chat_graph.stream({"query":query,"isImageUploaded":False}, config, stream_mode="updates"):
+            print("--Node--")
+            node_name = next(iter(event.keys()))
+            print(node_name)
+    else:
+        for event in chat_graph.stream({"query":query,"isImageUploaded":True,"base64_image":base64_image}, config, stream_mode="updates"):
+            print("--Node--")
+            node_name = next(iter(event.keys()))
+            print(node_name)
+    
     return chat_graph.get_state(config).values["messages"][-1].content
+
+
 
 
 
