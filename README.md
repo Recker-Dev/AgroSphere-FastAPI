@@ -1,27 +1,41 @@
+# 🌾 AgroSphere-FastAPI
 
-# AgroSphere-FastAPI
+AgroSphere-FastAPI is a backend application built with FastAPI to empower the agricultural ecosystem through intelligent automation. It assists farmers and researchers by recommending crops, detecting soil and weed types from images, and enabling interactive access to historical agricultural data using generative AI.
 
-## Overview
+---
 
-AgroSphere-FastAPI is a FastAPI-based application designed to provide various agricultural services, including crop recommendation, soil type detection, interaction with historical data via a language model, and weed detection. This application leverages machine learning models and APIs to assist farmers and agricultural enthusiasts in making informed decisions.
+## 🧠 Key Features
 
-## Features
+- **🌱 Crop Recommendation**  
+  Input soil parameters like Nitrogen, Phosphorus, Potassium, temperature, humidity, pH, and rainfall to receive tailored crop suggestions for your land.
 
--   **Crop Recommendation:** This feature takes soil parameters such as Nitrogen, Phosphorus, Potassium, temperature, humidity, pH, and rainfall as input and recommends the most suitable crops to grow in that soil.
--   **Soil Type Detection:** This feature allows users to upload an image of soil, and the application will identify the type of soil present in the image.
--   **Historical Data Interaction:** This feature enables users to query historical agricultural data using natural language. It leverages a language model to understand the query and provide relevant information from a dataset of historical agricultural data.
--   **Weed Detection:** This feature allows users to upload an image of a field or crop, and the application will detect the presence of weeds in the image, highlighting them for removal.
--   **General Purpose LLM:** This is a general purpose LLM that is connected to a multi-modal chat interface. You can upload images and ask questions about agriculture. 
+- **🧪 Soil Type Detection**  
+  Upload an image of soil, and the model will classify the type of soil, aiding in better agricultural decisions.
 
-## Technologies Used
+- **📊 Historical Data Interaction**  
+  Query past agricultural data using natural language. A language model understands your question and retrieves insightful responses from historical datasets.
 
--   FastAPI
--   PIL (Pillow)
--   Pytorch (for machine learning models)
--   Langchain (for LLM)
--   uvicorn
+- **🌿 Weed Detection**  
+  Upload an image of a field, and the system will detect and highlight weed-infested regions for targeted removal.
 
-## Setup and Installation
+- **💬 Multi-Modal LLM Chat**  
+  Chat with a general-purpose language model using both text and image inputs. Ideal for agricultural Q&A, support, and education.
+
+---
+
+## ⚙️ Tech Stack
+
+- **FastAPI** – High-performance API framework
+- **PyTorch** – For model inference
+- **PIL (Pillow)** – Image preprocessing
+- **LangChain** – Integrating LLMs for interaction
+- **Uvicorn** – ASGI server for running FastAPI
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Installation
 
 1.  **Clone the repository:**
 
@@ -44,10 +58,11 @@ AgroSphere-FastAPI is a FastAPI-based application designed to provide various ag
     pip install -r requirements.txt
     ```
 
-## API Endpoints
+## 📡 API Endpoints
 
-### 1. `/predictCrop`
+### 🔍 `/predictCrop`
 
+-   **Method**: POST
 -   **Description:** Recommends the most suitable crop based on the provided soil parameters.
 -   **Input:** JSON payload with soil parameters (N, P, K, temperature, humidity, pH, rainfall).
 -   **Example:**
@@ -64,31 +79,35 @@ AgroSphere-FastAPI is a FastAPI-based application designed to provide various ag
     }
     ```
 
-### 2. `/predictSoil`
+### 🧭 `/predictSoil`
 
+-   **Method**: POST
 -   **Description:** Identifies the type of soil from an uploaded image.
 -   **Input:** An image file of soil.
 
-### 3. `/chatHistoricModel`
+### 🗃️ `/chatHistoricModel`
 
+-   **Method**: POST
 -   **Description:** Allows users to query historical agricultural data using natural language.
 -   **Input:** Text query.
 -   **Example:** `"What was the average rainfall in 2020?"`
 
-### 4. `/chatWithLLM`
+### 🤖 `/chatWithLLM`
 
+-   **Method**: POST
 -   **Description:** Allows users to chat with a general purpose LLM with capabilities to upload images.
 -   **Input:**
     -   `thread_id`: Thread ID for chat history.
     -   `query`: User's query to the LLM.
     -   `image` (optional): Upload an image file.
 
-### 5. `/detect-weeds`
+### 🌱 `/detect-weeds`
 
+-   **Method**: POST
 -   **Description:** Detects weeds in an uploaded image.
 -   **Input:** An image file of a field or crop.
 
-## Running the Application
+## 🧪 Running the Application
 
 1.  **Start the FastAPI server:**
 
@@ -98,7 +117,7 @@ AgroSphere-FastAPI is a FastAPI-based application designed to provide various ag
 
     This command starts the server on `http://localhost:8000`.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -107,6 +126,6 @@ Contributions are welcome! Please follow these steps:
 3.  Make your changes and commit them.
 4.  Submit a pull request.
 
-## License
+## 📄 License
 
-MIT
+This project is licensed under the MIT License.
