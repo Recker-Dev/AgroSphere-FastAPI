@@ -109,4 +109,4 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-[Choose a license and add it here]
+MIT
