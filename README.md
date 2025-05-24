@@ -17,8 +17,7 @@ AgroSphere-FastAPI is a FastAPI-based application designed to provide various ag
 
 -   FastAPI
 -   PIL (Pillow)
--   scikit-learn
--   TensorFlow/Keras (for machine learning models)
+-   Pytorch (for machine learning models)
 -   Langchain (for LLM)
 -   uvicorn
 
