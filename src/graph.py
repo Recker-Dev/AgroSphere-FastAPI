@@ -1,6 +1,7 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 import os
+from IPython.display import Image,display
 from langgraph.graph import START,END,StateGraph, MessagesState
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, RemoveMessage
@@ -293,7 +294,6 @@ def should_trim(state:State):
 
 
 
-from IPython.display import Image,display
 workflow = StateGraph(State)
 workflow.add_node("image model", call_image_model)  
 workflow.add_node("chat model",call_chat_model)

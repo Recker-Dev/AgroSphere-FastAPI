@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agrosphere-api
+    # REMOVED: ports mapping. This port will only be accessible within the 'projects-net' Docker network.
+    # Uncomment, if u want exposed ports and wanna test this application out.
+    # ports:
+    #   - "8000:8000"
+    env_file:
+      - .env
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    # Comment if using ports
+    networks:
+      - projects-net # Connects this service to your pre-created network
+
+# Comment if using ports
+# Define the external network that your services will use
+networks:
+  projects-net:
+    external: true
