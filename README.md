@@ -156,7 +156,7 @@ For deploying AgroSphere-FastAPI securely to a server (like a Raspberry Pi) and 
 
 5.  **Set up your Cloudflare Tunnel (Separate Configuration):**
     You will need your own domain name, before even beginning and it needs to be configured to your cloudflare account, and namespaces need to be as given by cloudflare.
-    Once setup of a tunnel is done, you will get a TUNNEL_TOKEN. Ex: docker run cloudflare/cloudflared:latest tunnel --no-autoupdate run --token <TUNNEL_TOKEN>. U can run this command with a -d flag, but i like to copy my token and carry the steps below.
+    Once setup of a tunnel is done, you will get a TUNNEL_TOKEN. Ex: `docker run cloudflare/cloudflared:latest tunnel --no-autoupdate run --token <TUNNEL_TOKEN>` You can run this command with a `-d` flag, it will run in the `host` network but I like to copy my token and carry out the steps below, in a sub-network for security.
     Your Cloudflare Tunnel client should be configured in its *own* Docker Compose setup (e.g., `cloudflare-tunnel` service in a separate `docker-compose.yml`). This tunnel container must also be connected to the `projects-net` network.
 
     Inside your Cloudflare Tunnel's `config.yml` (which you'd typically mount as a volume to your tunnel container), you would define rules to route public traffic to your `agrosphere-api` service. For example:
