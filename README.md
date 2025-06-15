@@ -69,6 +69,11 @@ This section guides you through setting up and running the application directly 
     ## needed for using Gemini in OnRender or equivalent services)
     ## Just do not pass credentials=creds for {ChatGoogleGenerativeAI(...,credentials=creds)}
     ## wherever llm_gemini is defined in the project. Need active editing done in src folder.
+    
+    ## But why base64?? Just upload the JSON?? I couldn't figure our how to upload the JSON
+    ## on-render(yes i tried still couldn't), kinda pissed me off and took a lot of time to figure the alternative (self-hosting).
+    ## But ye it works without needing creds in local setup, or atleast if you can upload the service-account json somehow in cloud infra.
+    
     GOOGLE_CREDENTIALS_BASE64=your_google_service_account_detais_in_b64
     ```
 4. **Running the server:**
