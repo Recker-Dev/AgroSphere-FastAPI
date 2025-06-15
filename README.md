@@ -139,19 +139,7 @@ For deploying AgroSphere-FastAPI securely to a server (like a Raspberry Pi) and 
 
 3.  **Configure Environment Variables:**
     Create a `.env` file in the root of your `AgroSphere-FastAPI` directory. This file will be automatically picked up by Docker Compose.
-    ```env
-    # Example .env file content
-    GOOGLE_API_KEY=your_google_api_key_here
-    GROQ_API_KEY=your_groq_api_key_here
-    HF_TOKEN=your_hugging_face_api_key
     
-    ## Google Service accounts details (JSON) in a Base64 format.
-    ## (OPTIONAL -> if using on local machine/ self-deployed local server,
-    ## needed for using Gemini in OnRender or equivalent services)
-    ## Just do not pass credentials=creds for {ChatGoogleGenerativeAI(...,credentials=creds)}
-    ## wherever llm_gemini is defined in the project. Need active editing done in src folder.
-    GOOGLE_CREDENTIALS_BASE64=your_google_service_account_detais_in_b64
-    ```
 
 4.  **Build and Run the AgroSphere-FastAPI Container:**
     Navigate to the `AgroSphere-FastAPI` directory on your server and use Docker Compose:
